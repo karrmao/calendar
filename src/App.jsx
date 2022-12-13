@@ -8,6 +8,8 @@ import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 import './common.scss';
 
 const App = () => {
+  const daysInWeek = 7;
+
   const [weekStartDate] = useState(new Date());
   const [eventForm, isOpenModalForm] = useState(false);
 
