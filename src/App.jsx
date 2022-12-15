@@ -6,15 +6,32 @@ import Modal from './components/modal/Modal';
 import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 
 import './common.scss';
-
+console.log();
 const App = () => {
   const daysInWeek = 7;
 
-  const [weekStartDate] = useState(new Date());
+  const [weekStartDate, setWeekStartDate] = useState(new Date());
   const [eventForm, isOpenModalForm] = useState(false);
+  const [events] = useState([]);
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   //console.log(weekDates);
+
+  const swichNextWeek = () => {
+    setWeekStartDate(
+      new Date(
+        weekStartDate.setDate(new Date(weekStartDate).getDate() + daysInWeek)
+      )
+    );
+  };
+
+  const swichPrevWeek = () => {
+    setWeekStartDate(
+      new Date(
+        weekStartDate.setDate(new Date(weekStartDate).getDate() - daysInWeek)
+      )
+    );
+  };
 
   const showEventForm = () => {
     isOpenModalForm(true);
@@ -24,35 +41,22 @@ const App = () => {
     isOpenModalForm(false);
   };
 
+  const showCurentWeek = () => {
+    setWeekStartDate(new Date());
+  };
   return (
     <>
-      <Header showEventForm={showEventForm} />
-      <Calendar weekDates={weekDates} />
+      <Header
+        showEventForm={showEventForm}
+        swichNextWeek={swichNextWeek}
+        swichPrevWeek={swichPrevWeek}
+        showCurentWeek={showCurentWeek}
+        weekStartDate={weekStartDate}
+      />
+      <Calendar weekDates={weekDates} events={events} />
       {eventForm && <Modal closeEventForm={closeEventForm} />}
     </>
   );
 };
 
 export default App;
-
-// class App extends Component {
-//   state = {
-//     weekStartDate: new Date(),
-//   };
-
-//   render() {
-//     const { weekStartDate } = this.state;
-//     console.log(weekStartDate);
-//     const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
-//     console.log(weekDates);
-
-//     return (
-//       <>
-//         <Header />
-//         <Calendar weekDates={weekDates} />
-//       </>
-//     );
-//   }
-// }
-
-// export default App;
