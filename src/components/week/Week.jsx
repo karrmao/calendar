@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Day from '../day/Day';
 
 import './week.scss';
