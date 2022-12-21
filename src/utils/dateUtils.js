@@ -30,11 +30,9 @@ export const formatMins = (mins) => {
   return mins < 10 ? `0${mins}` : mins;
 };
 
-/**add */
 export const hours = Array(24)
   .fill()
   .map((val, index) => index);
-/****/
 
 export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const months = [
