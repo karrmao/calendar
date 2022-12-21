@@ -9,15 +9,8 @@ const Header = ({
   showCurentWeek,
   weekStartDate,
 }) => {
-  const currentMonth = moment(weekStartDate).format('MMM YYYY');
-  console.log(currentMonth);
-
-  const getHour = moment(weekStartDate).format('HH');
-  const getHour2 = moment(weekStartDate).format('H');
-  console.log('H:', getHour2);
-  const getDay = moment(weekStartDate).format('DD');
-  console.log('HH', getHour);
-  console.log(getDay);
+  const currentMonth = moment(weekStartDate).format('MMM');
+  const nextMonth = moment(weekStartDate).add(1, 'month').format('MMM');
 
   return (
     <header className="header">
@@ -43,7 +36,11 @@ const Header = ({
         >
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month">{currentMonth}</span>
+        <span className="navigation__displayed-month">
+          {weekStartDate.getDate() > 25
+            ? `${currentMonth} - ${nextMonth}`
+            : currentMonth}
+        </span>
       </div>
     </header>
   );

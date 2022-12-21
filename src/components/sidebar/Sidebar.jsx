@@ -1,12 +1,8 @@
 import React from 'react';
-
+import { hours } from '../../utils/dateUtils.js';
 import './sidebar.scss';
 
-const Sidebar = (props) => {
-  const hours = Array(24)
-    .fill()
-    .map((val, index) => index);
-
+const Sidebar = () => {
   return (
     <div className="calendar__time-scale">
       {hours.map((hour) => (
